@@ -1,19 +1,18 @@
 import React from 'react';
 import { User, MapPin, GraduationCap, Heart } from 'lucide-react';
+import GitHubRepos from '../GitHubRepos';
 
 const About: React.FC = () => {
   const skills = [
-    'JavaScript', 'TypeScript', 'React', 'Node.js', 'Python',
-    'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'MongoDB'
+    'JavaScript', 'MySQL', 'Python',
+    'HTML5', 'CSS3', 'Git'
   ];
 
   const hobbies = [
     { icon: '🎮', name: 'Games' },
     { icon: '📚', name: 'Leitura' },
     { icon: '🎵', name: 'Música' },
-    { icon: '🏃‍♂️', name: 'Corrida' },
-    { icon: '📷', name: 'Fotografia' },
-    { icon: '🍳', name: 'Culinária' }
+    { icon: '🏃‍♂️', name: 'Academia' }
   ];
 
   return (
@@ -37,16 +36,16 @@ const About: React.FC = () => {
               <div className="space-y-4 text-gray-300">
                 <div className="flex items-center">
                   <span className="font-semibold text-blue-400 w-20">Nome:</span>
-                  <span>João Silva</span>
+                  <span>Hugo Antonio</span>
                 </div>
                 <div className="flex items-center">
                   <span className="font-semibold text-blue-400 w-20">Idade:</span>
-                  <span>22 anos</span>
+                  <span>18 anos</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="text-blue-400 mr-2" size={16} />
                   <span className="font-semibold text-blue-400 w-18">Local:</span>
-                  <span>São Paulo, Brasil</span>
+                  <span>Maringá, Brasil</span>
                 </div>
                 <div className="flex items-center">
                   <GraduationCap className="text-blue-400 mr-2" size={16} />
@@ -61,7 +60,7 @@ const About: React.FC = () => {
             <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl">
               <h3 className="text-2xl font-semibold text-white mb-6">Sobre minha jornada</h3>
               <p className="text-gray-300 leading-relaxed mb-6">
-                Sou estudante de Ciência da Computação apaixonado por tecnologia e desenvolvimento web. 
+                Sou estudante de Ciência da Computação apaixonado por tecnologia. 
                 Atualmente, estou focado em criar aplicações modernas e responsivas usando as mais 
                 recentes tecnologias do mercado.
               </p>

@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
+import Projects from './components/Projects';
+import GitHubRepos from './GitHubRepos';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -10,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'contact'];
+      const sections = ['home', 'about', 'repos', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -61,6 +63,14 @@ function App() {
       <Header activeSection={activeSection} setActiveSection={setActiveSection} />
       <Home />
       <About />
+      <section id="repos" className="py-32 bg-gray-800 min-h-[40vh] flex items-center justify-center">
+        <div className="text-center w-full">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Repositórios</h2>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+          <GitHubRepos />
+        </div>
+      </section>
+      <Projects />
       <Contact />
     </div>
   );

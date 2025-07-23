@@ -6,40 +6,34 @@ const Contact: React.FC = () => {
     {
       name: 'GitHub',
       icon: Github,
-      url: 'https://github.com/joaosilva',
+      url: 'https://github.com/hugo-o-lima',
       color: 'hover:text-gray-300'
     },
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: 'https://linkedin.com/in/joaosilva',
+      url: 'https://www.linkedin.com/in/hugo-antonio-de-oliveira-lima-5453a6374/',
       color: 'hover:text-blue-400'
     },
-    {
-      name: 'Instagram',
-      icon: Instagram,
-      url: 'https://instagram.com/joaosilva',
-      color: 'hover:text-pink-400'
-    }
   ];
 
   const contactInfo = [
     {
       icon: Mail,
       label: 'Email',
-      value: 'joao.silva@email.com',
-      href: 'mailto:joao.silva@email.com'
+      value: 'hugo.antonio2026@gmail.com',
+      href: 'mailto:hugo.antonio2026@gmail.com'
     },
     {
       icon: Phone,
       label: 'Telefone',
-      value: '+55 (11) 99999-9999',
-      href: 'tel:+5511999999999'
+      value: '+55 (67) 99992-4440',
+      href: 'tel:+5567999924440'
     },
     {
       icon: MapPin,
       label: 'Localização',
-      value: 'São Paulo, Brasil',
+      value: 'Maringá, Brasil',
       href: '#'
     }
   ];
@@ -108,7 +102,7 @@ const Contact: React.FC = () => {
         {/* Footer */}
         <div className="text-center mt-16 pt-8 border-t border-gray-700">
           <p className="text-gray-400">
-            © 2025 João Silva. Feito com ❤️ e muito café ☕
+            © 2025 Hugo Antonio. Todos os direitos reservados.
           </p>
         </div>
       </div>

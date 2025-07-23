@@ -18,12 +18,12 @@ const Home: React.FC = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
             Olá, eu sou{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-              João Silva
+              Hugo Antonio
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Desenvolvedor Frontend apaixonado por criar experiências digitais incríveis e inovadoras
+            Desenvolvedor e estudante apaixonado por criar experiências digitais incríveis e inovadoras
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -13,6 +13,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
   const menuItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'Sobre' },
+    { id: 'repos', label: 'Repositórios' },
+    { id: 'projects', label: 'Projetos' },
     { id: 'contact', label: 'Contato' }
   ];
 
@@ -42,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-white">
             <span className="text-blue-400">{'<'}</span>
-            Portfolio
+            hugo-antonio.dev.br
             <span className="text-blue-400">{'/>'}</span>
           </div>
 
