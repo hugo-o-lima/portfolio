@@ -1,17 +1,21 @@
 # Deploy para a VPS
 
-## Pré-requisitos (na sua máquina)
+## Pré-requisitos
 
-- Bash, `ssh`, `scp` disponíveis
-- Chave SSH com acesso à VPS (`ubuntu@167.234.240.230`)
+- Acesso SSH à VPS (`ubuntu@167.234.240.230`)
 - DNS `hugo-antonio.dev.br` apontando para `167.234.240.230` (já configurado ✓)
 
 ## Primeiro deploy
 
 ```bash
-# Na raiz do projeto:
-chmod +x deploy/deploy.sh deploy/update.sh
-./deploy/deploy.sh /caminho/para/sua_chave_ssh
+# 1. Acesse a VPS
+ssh ubuntu@167.234.240.230
+
+# 2. Clone o repositório
+git clone https://github.com/hugo-o-lima/portfolio.git /opt/portfolio
+
+# 3. Execute o deploy
+bash /opt/portfolio/deploy/deploy.sh
 ```
 
 O script vai perguntar interativamente:
@@ -47,7 +51,8 @@ Tempo estimado: **5–10 minutos** (instalação de pacotes, build, SSL).
 Após fazer push de mudanças para o GitHub:
 
 ```bash
-./deploy/update.sh /caminho/para/sua_chave_ssh
+# Na VPS:
+bash /opt/portfolio/deploy/update.sh
 ```
 
 Faz pull, rebuild, migrations, e reinicia os serviços — sem perder dados.
