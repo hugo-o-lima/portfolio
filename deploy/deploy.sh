@@ -17,28 +17,50 @@ die()  { echo -e "${RED}✗${NC} $1"; exit 1; }
 [ -f "$SCRIPT_DIR/setup-server.sh" ] || die "setup-server.sh não encontrado em $SCRIPT_DIR"
 
 # ── Variáveis de produção ─────────────────────────────────────
-echo ""
-echo "Configure as credenciais de produção (Enter para manter os padrões):"
+# Respeita variáveis de ambiente (para CI/automação)
+# Ou pede input interativo se não definidas
 
-read -rp "  Email do admin [admin@$DOMAIN]: " ADMIN_EMAIL
-ADMIN_EMAIL="${ADMIN_EMAIL:-admin@$DOMAIN}"
-
-read -rsp "  Senha do admin (mín. 12 chars): " ADMIN_PASSWORD; echo ""
-[ ${#ADMIN_PASSWORD} -ge 12 ] || die "Senha muito curta (mínimo 12 caracteres)."
-
-read -rsp "  Senha do PostgreSQL [gerada automaticamente]: " DB_PASSWORD; echo ""
-if [ -z "$DB_PASSWORD" ]; then
-  DB_PASSWORD=$(LC_ALL=C tr -dc 'A-Za-z0-9!@#$%' < /dev/urandom | head -c 24)
-  warn "Senha gerada: $DB_PASSWORD  ← anote esta senha!"
+if [ -z "${ADMIN_EMAIL:-}" ]; then
+  echo ""
+  echo "Configure as credenciais de produção (Enter para manter os padrões):"
+  read -rp "  Email do admin [admin@$DOMAIN]: " input_email
+  ADMIN_EMAIL="${input_email:-admin@$DOMAIN}"
+else
+  log "Email do admin: $ADMIN_EMAIL (via env)"
 fi
 
-# Gera segredos JWT
-if command -v openssl &>/dev/null; then
-  JWT_ACCESS_SECRET=$(openssl rand -hex 64)
-  JWT_REFRESH_SECRET=$(openssl rand -hex 64)
+if [ -z "${ADMIN_PASSWORD:-}" ]; then
+  read -rsp "  Senha do admin (mín. 12 chars): " ADMIN_PASSWORD; echo ""
+fi
+[ ${#ADMIN_PASSWORD} -ge 12 ] || die "Senha muito curta (mínimo 12 caracteres)."
+
+if [ -z "${DB_PASSWORD:-}" ]; then
+  read -rsp "  Senha do PostgreSQL [gerada automaticamente]: " input_db_password; echo ""
+  if [ -z "$input_db_password" ]; then
+    DB_PASSWORD=$(LC_ALL=C tr -dc 'A-Za-z0-9!@#$%' < /dev/urandom | head -c 24)
+    warn "Senha gerada: $DB_PASSWORD  ← anote esta senha!"
+  else
+    DB_PASSWORD="$input_db_password"
+  fi
 else
-  JWT_ACCESS_SECRET=$(LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 128)
-  JWT_REFRESH_SECRET=$(LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 128)
+  log "Senha do PostgreSQL: *** (via env)"
+fi
+
+# Gera segredos JWT (sempre, ou usa env se definidas)
+if [ -z "${JWT_ACCESS_SECRET:-}" ]; then
+  if command -v openssl &>/dev/null; then
+    JWT_ACCESS_SECRET=$(openssl rand -hex 64)
+  else
+    JWT_ACCESS_SECRET=$(LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 128)
+  fi
+fi
+
+if [ -z "${JWT_REFRESH_SECRET:-}" ]; then
+  if command -v openssl &>/dev/null; then
+    JWT_REFRESH_SECRET=$(openssl rand -hex 64)
+  else
+    JWT_REFRESH_SECRET=$(LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 128)
+  fi
 fi
 
 # ── Execução do setup ─────────────────────────────────────────
