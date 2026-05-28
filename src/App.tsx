@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import Projects from './components/Projects';
 import GitHubRepos from './GitHubRepos';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+import { ProtectedRoute } from './components/admin/ProtectedRoute';
 
-function App() {
+function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
@@ -20,7 +24,7 @@ function App() {
         if (element) {
           const offsetTop = element.offsetTop;
           const height = element.offsetHeight;
-          
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
             setActiveSection(section);
             break;
@@ -44,22 +48,14 @@ function App() {
 
   return (
     <div className="bg-gray-900 text-white">
-      {/* Cursor personalizado */}
       <div
         className="cursor"
-        style={{
-          left: `${cursorPosition.x - 10}px`,
-          top: `${cursorPosition.y - 10}px`,
-        }}
+        style={{ left: `${cursorPosition.x - 10}px`, top: `${cursorPosition.y - 10}px` }}
       />
       <div
         className="cursor-glow"
-        style={{
-          left: `${cursorPosition.x - 20}px`,
-          top: `${cursorPosition.y - 20}px`,
-        }}
+        style={{ left: `${cursorPosition.x - 20}px`, top: `${cursorPosition.y - 20}px` }}
       />
-      
       <Header activeSection={activeSection} setActiveSection={setActiveSection} />
       <Home />
       <About />
@@ -73,6 +69,18 @@ function App() {
       <Projects />
       <Contact />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Portfolio />} />
+      <Route path="/admin" element={<AdminLogin />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      </Route>
+    </Routes>
   );
 }
 
