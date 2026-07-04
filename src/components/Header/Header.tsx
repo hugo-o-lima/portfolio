@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLanguage } from '../i18n/useLanguage';
-import LanguageSwitch from './LanguageSwitch';
+import { useLanguage } from '../../i18n/useLanguage';
+import LanguageSwitch from '../LanguageSwitch';
 
 interface HeaderProps {
   activeSection: string;

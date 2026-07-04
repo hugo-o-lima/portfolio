@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
-import SectionHeading from './SectionHeading';
-import SpotlightCard from './SpotlightCard';
-import { useLanguage } from '../i18n/useLanguage';
+import SectionHeading from '../SectionHeading';
+import SpotlightCard from '../SpotlightCard';
+import { useLanguage } from '../../i18n/useLanguage';
 
 interface Project {
   id: string;

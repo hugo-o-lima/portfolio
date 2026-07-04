@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
-import Reveal from './Reveal';
-import SectionHeading from './SectionHeading';
-import { useLanguage } from '../i18n/useLanguage';
-import { useContent } from '../content/useContent';
+import Reveal from '../Reveal';
+import SectionHeading from '../SectionHeading';
+import { useLanguage } from '../../i18n/useLanguage';
+import { useContent } from '../../content/useContent';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
 

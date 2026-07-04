@@ -1,5 +1,5 @@
-import { useLanguage } from '../i18n/useLanguage';
-import { LANGS, type Lang } from '../i18n/translations';
+import { useLanguage } from '../../i18n/useLanguage';
+import { LANGS, type Lang } from '../../i18n/translations';
 
 /* Switch deslizante PT | EN. O indicador desliza para o idioma ativo. */
 export default function LanguageSwitch({ className = '' }: { className?: string }) {

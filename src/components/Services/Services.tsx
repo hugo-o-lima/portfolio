@@ -1,10 +1,10 @@
 import React from 'react';
 import { Code2, Server, Database } from 'lucide-react';
-import Reveal from './Reveal';
-import SectionHeading from './SectionHeading';
-import SpotlightCard from './SpotlightCard';
-import { useLanguage } from '../i18n/useLanguage';
-import { useContent } from '../content/useContent';
+import Reveal from '../Reveal';
+import SectionHeading from '../SectionHeading';
+import SpotlightCard from '../SpotlightCard';
+import { useLanguage } from '../../i18n/useLanguage';
+import { useContent } from '../../content/useContent';
 
 // Mapeia o nome do ícone (editável no admin) para o componente lucide.
 const iconMap: Record<string, typeof Code2> = {

@@ -2,8 +2,8 @@ import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Contact from './Contact';
-import { LanguageProvider } from '../i18n/LanguageContext';
-import { ContentProvider } from '../content/ContentContext';
+import { LanguageProvider } from '../../i18n/LanguageContext';
+import { ContentProvider } from '../../content/ContentContext';
 
 beforeEach(() => {
   // Force pt-BR so the labels asserted below are deterministic.

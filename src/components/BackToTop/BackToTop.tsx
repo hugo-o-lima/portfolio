@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { useLanguage } from '../i18n/useLanguage';
+import { useLanguage } from '../../i18n/useLanguage';
 
 export default function BackToTop() {
   const { t } = useLanguage();

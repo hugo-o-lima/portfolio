@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Star, GitFork } from 'lucide-react';
-import { useLanguage } from './i18n/useLanguage';
+import { useLanguage } from '../../i18n/useLanguage';
 
 interface Repo {
   id: number;

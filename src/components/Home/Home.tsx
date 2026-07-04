@@ -1,8 +1,8 @@
 import React from 'react';
 import { ChevronDown, Github, Linkedin } from 'lucide-react';
-import Typewriter from './Typewriter';
-import { useLanguage } from '../i18n/useLanguage';
-import { useContent } from '../content/useContent';
+import Typewriter from '../Typewriter';
+import { useLanguage } from '../../i18n/useLanguage';
+import { useContent } from '../../content/useContent';
 
 const stagger = (step: number): React.CSSProperties => ({ animationDelay: `${step * 0.15}s` });
 

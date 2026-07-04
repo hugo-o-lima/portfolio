@@ -1,9 +1,9 @@
 import React from 'react';
 import { User, MapPin, GraduationCap, Heart } from 'lucide-react';
-import Reveal from './Reveal';
-import SectionHeading from './SectionHeading';
-import { useLanguage } from '../i18n/useLanguage';
-import { useContent } from '../content/useContent';
+import Reveal from '../Reveal';
+import SectionHeading from '../SectionHeading';
+import { useLanguage } from '../../i18n/useLanguage';
+import { useContent } from '../../content/useContent';
 
 const infoIcons = [undefined, undefined, MapPin, GraduationCap] as const;
 

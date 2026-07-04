@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import GitHubRepos from './GitHubRepos';
-import { LanguageProvider } from './i18n/LanguageContext';
+import { LanguageProvider } from '../../i18n/LanguageContext';
 
 function renderRepos() {
   return render(
