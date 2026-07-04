@@ -1,0 +1,19 @@
+{
+  "name": "Hugo Antonio — Desenvolvedor Full-Stack",
+  "short_name": "Hugo Antonio",
+  "description": "Portfólio de Hugo Antonio, desenvolvedor full-stack e estudante de Ciência da Computação.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
