@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/useAuth';
+import { useAuth } from '../../context/useAuth';
 import { LogOut, Server, X, Users, Wifi, Info, Pencil, Check, RefreshCw, Clock, Play, Square, Terminal, Power } from 'lucide-react';
 
 interface StatusData {

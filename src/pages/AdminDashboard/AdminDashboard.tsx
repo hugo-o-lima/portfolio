@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/useAuth';
-import ProjectModal from '../components/admin/ProjectModal';
+import { useAuth } from '../../context/useAuth';
+import ProjectModal from '../../components/admin/ProjectModal';
 import { Plus, Edit, Trash2, LogOut, Eye, EyeOff } from 'lucide-react';
 
 interface Project {

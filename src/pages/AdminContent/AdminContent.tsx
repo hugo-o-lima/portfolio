@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/useAuth';
-import { useContent } from '../content/useContent';
-import { defaultContent, langs, type SiteContent, type ContentSection, type Lang } from '../content/types';
+import { useAuth } from '../../context/useAuth';
+import { useContent } from '../../content/useContent';
+import { defaultContent, langs, type SiteContent, type ContentSection, type Lang } from '../../content/types';
 import {
   LogOut, Plus, Trash2, Check, ChevronDown, Save,
   User, Home as HomeIcon, Briefcase, Mail, Languages,
