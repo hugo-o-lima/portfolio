@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend (lint · typecheck · test · build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npx tsc -b --noEmit
+      - name: Test
+        run: npm test
+      - name: Build
+        run: npm run build
+
+  backend:
+    name: Backend (migrate · build · test)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: portfolio_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_db
+      JWT_ACCESS_SECRET: ci_access_secret_at_least_32_chars_long_xxx
+      JWT_REFRESH_SECRET: ci_refresh_secret_at_least_32_chars_long_xx
+      NODE_ENV: test
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - name: Run migrations
+        run: npm run migrate
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test
+
+  deploy:
+    name: Deploy to VPS
+    needs: [frontend, backend]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # Requires a self-hosted runner registered on the VPS with the
+    # "portfolio-vps" label (see deploy/README.md). Keeps the SSH-less model:
+    # the runner executes the existing update.sh locally on the box.
+    runs-on: [self-hosted, portfolio-vps]
+    steps:
+      - name: Run update.sh on the VPS
+        run: /opt/portfolio/deploy/update.sh
